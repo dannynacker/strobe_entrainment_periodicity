@@ -7,6 +7,7 @@ entered into a bank to pull participant-specific data during the running of the 
 
 It sends triggers at stimulation onset and offset to the eego software specific to a 64-electrode Waveguard gel EEG cap via a parallel port to allow for EEG data epoching of the stimulation period. 
 We then isolate the Oz channel in a separate script, epoch the data into trials, submit the data through a preprocessing pipeline, and calculate power through an FFT using EEGLab's pop_fourieeg. 
+The .elp file of the channel locations for this cap is also included with the analysis pipeline. 
 
 This repository also contains scripts to calculate participant IAF pre- and post- experimental stimulation through EEGLab and ERPLab. 
 

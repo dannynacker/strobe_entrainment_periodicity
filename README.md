@@ -10,7 +10,7 @@ We then isolate the Oz channel in a separate script, epoch the data into trials,
 
 This repository also contains scripts to calculate participant IAF pre- and post- experimental stimulation through EEGLab and ERPLab. 
 
-EEGLab: https://github.com/sccn/eeglab
+EEGLab: https://github.com/sccn/eeglab & 
 ERPLab: https://github.com/ucdavis/erplab/releases 
 
 Strobe sequencing scripts to create the flash distributions are thanks to Dr. Lionel Barnett at the Sussex Center for Consciousness Science! 

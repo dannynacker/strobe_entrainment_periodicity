@@ -13,6 +13,7 @@ function periodic_10
     fs     = 2000;  % Hz - this is apparently what the device expects
     dfac = 5; %spectral power display frequency cutoff factor 
     condition = 'periodic10';
+    F = 10;
         
     %% the usual setup (strobe stuff and trial onset warning)
 
@@ -26,17 +27,8 @@ function periodic_10
         
     %% Define the parameters of the participant signaling tone
 
-    % Parameters
-    frequency = 440; % Frequency of the tone in Hz
-    duration = 2; % Duration of the tone in seconds
-    sampleRate = 44100; % Sampling rate (number of samples per second)
-    
-    % Time vector
-    t = linspace(0, duration, duration * sampleRate);
-    
-    % Generate the tone
-    tone = sin(2 * pi * frequency * t);
-
+    audioFilePath = "E:\final_experiment\copper_bell_A.mp3";
+    [y, Fs] = audioread(audioFilePath);
         
     %% Set up light details
     
@@ -63,8 +55,8 @@ function periodic_10
     
     %% Device Usage from File
     
-        comPort = "COM4"; % You can use serialportlist() to list all available ports
-        filename = "Example.txt";
+        comPort = "COM6"; % You can use serialportlist() to list all available ports
+        filename = "taster.txt";
     
     % Before this script is run, the ### sequence should be executed
         if ~exist('preparedStrobeData1D', 'var')
@@ -134,16 +126,14 @@ function periodic_10
         disp(F)
         disp(condition)
     
-        % Play a tone signaling start of sequence
-    
-        sound(tone, sampleRate);
-        pause(duration);
-    
        %% Play the sequence
     
         disp("Re-reading file list.")
         fileListAfterWrite = device.getFileList();
         pause(1);
+
+        sound(y, Fs);
+        pause(5);
     
         disp("Playing strobe file...")
         

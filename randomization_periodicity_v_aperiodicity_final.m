@@ -73,9 +73,9 @@
 %% Specify Our Paths %%
 %% +++++++++++++++++ %%
 
-addpath("E:\final_experiment");
-audioFilePath = ("E:\final_experiment\copper_bell_A.mp3");
-aperiodicSamplePath = ("E:\final_experiment\aperiodic");
+addpath("F:\final_experiment");
+audioFilePath = ("F:\final_experiment\copper_bell_A.mp3");
+aperiodicSamplePath = ("F:\final_experiment\aperiodic");
 
 %% +++++++++++++++++ %%
 %% Initiate the Tone %%
@@ -136,8 +136,8 @@ dfac = 5; % spectral power display frequency cutoff factor
 F_values_Poisson = [11.2, 11.4, 11.4, 11.5, 11.6, 11.8, 12.1, 12, 12.2, 12.3, 12.5, 12.7, 12.8, 12.8, 13, 13.2, 13.4, 13.6, 13.6, 13.8, 13.8, 14.2, 14.3, 14.3, 14.5, 14.6, 14.7, 15, 15, 15.3, 15.5, 15.5, 15.6, 15.7, 15.9, 16, 16.1, 16.2, 16.4, 16.6, 16.7, 19.5];
 EF_values_Poisson = [7.993333333, 8.106666667, 8.193333333, 8.306666667, 8.406666667, 8.506666667, 8.6, 8.703333333, 8.81, 8.906666667, 8.996666667, 9.093333333, 9.203333333, 9.3, 9.403333333, 9.49, 9.606666667, 9.693333333, 9.803333333, 9.906666667, 10.00666667, 10.09333333, 10.2, 10.3, 10.40333333, 10.5, 10.59333333, 10.69333333, 10.8, 10.9, 11.01, 11.09, 11.19, 11.3, 11.40333333, 11.49666667, 11.61, 11.69, 11.79333333, 11.90666667, 11.99, 14.00666667];
 
-F_values_periodic = [8, 10, 14, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 14];
-EF_values_periodic = [8, 10, 14, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 14];
+F_values_periodic = [8, 10, 14, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12];
+EF_values_periodic = [8, 10, 14, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12];
 
 %% ++++++++++++++++++++ %%
 %% Define and Randomize %%
@@ -188,7 +188,7 @@ for i = 1:length(randomized_conditions)
                 case '8 Hz Aperiodic'
                     index = find(F_values_Poisson == 11.2, 1);
                 case '10 Hz Aperiodic'
-                    index = find(F_values_Poisson == 13.8, 1);
+                    index = find(EF_values_Poisson == 10.00666667, 1);
                 case '14 Hz Aperiodic'
                     index = length(F_values_Poisson); % Last index
                 case '8 Hz Periodic'
@@ -346,7 +346,7 @@ function success = runStrobeSequence(condition, F, EF, osig, T, fs, ondur, dfac,
         save('strobe_sequence.mat', 'preparedStrobeData1D');
 
         % File name for the strobe sequence to be written to the device
-        filename = "sequence.txt";
+        filename = "Example.txt";
 
         pause(1);
 
@@ -394,6 +394,9 @@ function success = runStrobeSequence(condition, F, EF, osig, T, fs, ondur, dfac,
         end
         disp("Done.");
         pause(1);
+
+        audioFilePath = ("F:\final_experiment\copper_bell_A.mp3");
+        [y, Fs] = audioread(audioFilePath);
 
         % Play readiness tone
         sound(y, Fs);

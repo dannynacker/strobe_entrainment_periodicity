@@ -18,7 +18,7 @@
 % 8, 10, 14, and IAF Hz                                                               %%
 % 3. Randomizes the order of condition selection                                      %%
 % 4. Forces aperiodic effective frequencies utilizing strobe sequences selected       %%
-% from a predetermined sample signal previously generated via force_EF.m              %%
+% from a predetermined sample signal previously generated via EF_bank.m               %%
 % 5. Sends these sequences over to the SCCS strobe light and prompts the              %%
 % user to press any key to begin the next trial                                       %%
 % 6. Requires a series of addition scripts and files.                                 %%

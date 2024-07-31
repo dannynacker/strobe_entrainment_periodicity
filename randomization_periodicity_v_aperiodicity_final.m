@@ -18,7 +18,7 @@
 % 8, 10, 14, and IAF Hz                                                               %%
 % 3. Randomizes the order of condition selection                                      %%
 % 4. Forces aperiodic effective frequencies utilizing strobe sequences selected       %%
-% from a predetermined sample signal previously generated via EF_bank.m               %%
+% from a predetermined sample signal previously generated via force_EF.m              %%
 % 5. Sends these sequences over to the SCCS strobe light and prompts the              %%
 % user to press any key to begin the next trial                                       %%
 % 6. Requires a series of addition scripts and files.                                 %%
@@ -73,9 +73,9 @@
 %% Specify Our Paths %%
 %% +++++++++++++++++ %%
 
-addpath("F:\final_experiment");
-audioFilePath = ("F:\final_experiment\copper_bell_A.mp3");
-aperiodicSamplePath = ("F:\final_experiment\aperiodic");
+addpath("E:\final_experiment");
+audioFilePath = ("E:\final_experiment\copper_bell_A.mp3");
+aperiodicSamplePath = ("E:\final_experiment\aperiodic");
 
 %% +++++++++++++++++ %%
 %% Initiate the Tone %%
@@ -139,9 +139,29 @@ EF_values_Poisson = [7.993333333, 8.106666667, 8.193333333, 8.306666667, 8.40666
 F_values_periodic = [8, 10, 14, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 14];
 EF_values_periodic = [8, 10, 14, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 14];
 
+%% ++++++++++++++++++++ %%
+%% Define and Randomize %%
+%% Conditions           %%
+%% ++++++++++++++++++++ %%
+
+% Define the conditions
+conditions = {'8 Hz Periodic', '10 Hz Periodic', '14 Hz Periodic', 'IAF Hz Periodic', ...
+              '8 Hz Aperiodic', '10 Hz Aperiodic', '14 Hz Aperiodic', 'IAF Hz Aperiodic'};
+
+% Randomize the order of conditions
+randomized_conditions = conditions(randperm(length(conditions)));
+
+%% ++++++++++++++++++++++ %%
+%% Define the Device Port %%
+%% ++++++++++++++++++++++ %%
+
+% Initialize device connection before the loop
+comPort = "COM6";
+
 %% +++++++++++++++++++++ %%
 %% Selecting A Condition %%
 %% +++++++++++++++++++++ %%
+
 % Loop through randomized conditions
 for i = 1:length(randomized_conditions)
     success = false; % Initialize success flag
@@ -160,48 +180,45 @@ for i = 1:length(randomized_conditions)
             F = NaN;
             EF = NaN;
 
+            % Define tolerance for matching of conditional EFs
+            tolerance = 0.05;
+
             % Select appropriate F and EF values based on condition
             switch condition
                 case '8 Hz Aperiodic'
-                    F = F_values_Poisson(1);
-                    EF = EF_values_Poisson(1);
+                    index = find(F_values_Poisson == 11.2, 1);
                 case '10 Hz Aperiodic'
-                    F = F_values_Poisson(20);
-                    EF = EF_values_Poisson(20);
+                    index = find(F_values_Poisson == 13.8, 1);
                 case '14 Hz Aperiodic'
-                    F = F_values_Poisson(end);
-                    EF = EF_values_Poisson(end);
+                    index = length(F_values_Poisson); % Last index
                 case '8 Hz Periodic'
-                    F = F_values_periodic(1);
-                    EF = EF_values_periodic(1);
+                    index = find(F_values_periodic == 8, 1);
                 case '10 Hz Periodic'
-                    F = F_values_periodic(2);
-                    EF = EF_values_periodic(2);
+                    index = find(F_values_periodic == 10, 1);
                 case '14 Hz Periodic'
-                    F = F_values_periodic(3);
-                    EF = EF_values_periodic(3);
+                    index = find(F_values_periodic == 14, 1);
                 case 'IAF Hz Aperiodic'
                     index = find(abs(EF_values_Poisson - IAF) < tolerance, 1);
-                    if ~isempty(index)
-                        F = F_values_Poisson(index);
-                        EF = EF_values_Poisson(index);
-                    else
-                        error('IAF value not found in EF_values_Poisson');
-                    end
                 case 'IAF Hz Periodic'
                     index = find(abs(EF_values_periodic - IAF) < tolerance, 1);
-                    if ~isempty(index)
-                        F = F_values_periodic(index);
-                        EF = EF_values_periodic(index);
-                    else
-                        error('IAF value not found in EF_values_periodic');
-                    end
+            end
+
+            if isempty(index)
+                error('IAF value not found in EF_values for condition: %s', condition);
+            else
+                if contains(condition, 'Aperiodic')
+                    F = F_values_Poisson(index);
+                    EF = EF_values_Poisson(index);
+                else
+                    F = F_values_periodic(index);
+                    EF = EF_values_periodic(index);
+                end
             end
             
             if isnan(F) || isnan(EF)
                 error('F or EF not set for condition: %s with osig: %s', condition, osig);
             end
-            
+
             % Display selected parameters for current condition
             fprintf('Condition: %s\n', condition);
             fprintf('osig: %s\n', osig);

@@ -724,7 +724,7 @@ classdef StrobeDevice
                     delete(fullfile(workingDir, "StrobeDevice", "ThreadIsRunning.txt"));
                 end
     
-                deviceSerialPort = serialport(portName, 250000, 'Timeout', 0.1);
+                deviceSerialPort = serialport(portName, 115200, 'Timeout', 0.1);
     
                 if isempty(deviceSerialPort)
                     % If we failed to connect, terminate this thread and show

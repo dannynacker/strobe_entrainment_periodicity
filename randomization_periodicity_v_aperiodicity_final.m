@@ -2,9 +2,9 @@
 %% ++++++++++++++++++++++++++++++++++++++++++++++++ %%
 %% ++++++++++++++++++++++++++++++++++++++++++++++++ %%
 
-%% ++++++++++++++++++++++++++++++++++++++ %%
-%% Wednesday, July the Thirty-First, 2024 %%
-%% ++++++++++++++++++++++++++++++++++++++ %%
+%% +++++++++++++++++++++++++++++++ %%
+%% Sunday, August the Fourth, 2024 %%
+%% +++++++++++++++++++++++++++++++ %%
 
 %% ++++++++++++ %%
 %% This script: %%
@@ -73,9 +73,13 @@
 %% Specify Our Paths %%
 %% +++++++++++++++++ %%
 
-addpath("F:\final_experiment");
-audioFilePath = ("F:\final_experiment\copper_bell_A.mp3");
-aperiodicSamplePath = ("F:\final_experiment\aperiodic");
+addpath("D:\new_interface");
+addpath("D:\new_interface\Aperiodicity\");
+addpath("D:\new_interface\StrobeDevice");
+addpath("D:\new_interface\Triggers\")
+addpath("D:\new_interface\Strobe_Sequencing\");
+audioFilePath = ("D:\new_interface\Experimental_Script\copper_bell_A.mp3");
+aperiodicSamplePath = ("D:\new_interface\Aperiodicity");
 
 %% +++++++++++++++++ %%
 %% Initiate the Tone %%
@@ -133,11 +137,11 @@ dfac = 5; % spectral power display frequency cutoff factor
 %% Value Banks %%
 %% +++++++++++ %%
 
-F_values_Poisson = [11.2, 11.4, 11.4, 11.5, 11.6, 11.8, 12.1, 12, 12.2, 12.3, 12.5, 12.7, 12.8, 12.8, 13, 13.2, 13.4, 13.6, 13.6, 13.8, 13.8, 14.2, 14.3, 14.3, 14.5, 14.6, 14.7, 15, 15, 15.3, 15.5, 15.5, 15.6, 15.7, 15.9, 16, 16.1, 16.2, 16.4, 16.6, 16.7, 19.5];
-EF_values_Poisson = [7.993333333, 8.106666667, 8.193333333, 8.306666667, 8.406666667, 8.506666667, 8.6, 8.703333333, 8.81, 8.906666667, 8.996666667, 9.093333333, 9.203333333, 9.3, 9.403333333, 9.49, 9.606666667, 9.693333333, 9.803333333, 9.906666667, 10.00666667, 10.09333333, 10.2, 10.3, 10.40333333, 10.5, 10.59333333, 10.69333333, 10.8, 10.9, 11.01, 11.09, 11.19, 11.3, 11.40333333, 11.49666667, 11.61, 11.69, 11.79333333, 11.90666667, 11.99, 14.00666667];
+F_values_Poisson = [10.8, 12.5, 12.8, 12.8, 12.9, 13.2, 13.3, 13.6, 13.3, 13.9, 14, 14, 14.3, 14.4, 14.8, 14.8, 15, 15.3, 15.3, 15.1, 15.6, 15.8, 15.8, 16.3, 16.3, 16.5, 16.6, 16.8, 16.7, 17.3, 17.2, 17.3, 17.6, 17.8, 17.9, 18, 18.3, 18.4, 18.8, 18.6, 19, 19.1, 24.5];
+EF_values_Poisson = [7.009988317, 7.996653339, 8.093319844, 8.193319678, 8.293319511, 8.406652656, 8.503319161, 8.596652339, 8.6999855, 8.806651989, 8.90998515, 8.996651672, 9.103318161, 9.196651339, 9.2999845, 9.399984333, 9.499984167, 9.603317328, 9.693317178, 9.799983667, 9.909983483, 10.00331666, 10.10331649, 10.20664966, 10.30331616, 10.40998265, 10.49331584, 10.59331568, 10.69331551, 10.80998198, 10.90331516, 10.99664834, 11.10998148, 11.20331466, 11.29331451, 11.40998098, 11.50664749, 11.60664732, 11.70664716, 11.80331366, 11.89331351, 12.00331333, 14.99664167];
 
-F_values_periodic = [8, 10, 14, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12];
-EF_values_periodic = [8, 10, 14, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12];
+F_values_periodic = [7, 10, 15, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12];
+EF_values_periodic = [7, 10, 15, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12];
 
 %% ++++++++++++++++++++ %%
 %% Define and Randomize %%
@@ -145,8 +149,8 @@ EF_values_periodic = [8, 10, 14, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9,
 %% ++++++++++++++++++++ %%
 
 % Define the conditions
-conditions = {'8 Hz Periodic', '10 Hz Periodic', '14 Hz Periodic', 'IAF Hz Periodic', ...
-              '8 Hz Aperiodic', '10 Hz Aperiodic', '14 Hz Aperiodic', 'IAF Hz Aperiodic'};
+conditions = {'7 Hz Periodic', '10 Hz Periodic', '15 Hz Periodic', 'IAF Hz Periodic', ...
+              '7 Hz Aperiodic', '10 Hz Aperiodic', '15 Hz Aperiodic', 'IAF Hz Aperiodic'};
 
 % Randomize the order of conditions
 randomized_conditions = conditions(randperm(length(conditions)));
@@ -161,6 +165,9 @@ comPort = "COM6";
 %% +++++++++++++++++++++ %%
 %% Selecting A Condition %%
 %% +++++++++++++++++++++ %%
+
+% Initialize trial_info with headers
+trial_info = {'TrialNumber', 'Condition', 'osig', 'F', 'EF', 'ParticipantID', 'Age', 'Sex', 'Handedness', 'IAF'};
 
 % Loop through randomized conditions
 for i = 1:length(randomized_conditions)
@@ -185,18 +192,18 @@ for i = 1:length(randomized_conditions)
 
             % Select appropriate F and EF values based on condition
             switch condition
-                case '8 Hz Aperiodic'
-                    index = find(F_values_Poisson == 11.2, 1);
+                case '7 Hz Aperiodic'
+                    index = find(F_values_Poisson == 10.8, 1);
                 case '10 Hz Aperiodic'
-                    index = find(EF_values_Poisson == 10.00666667, 1);
-                case '14 Hz Aperiodic'
+                    index = find(EF_values_Poisson == 10.00331666, 1);
+                case '15 Hz Aperiodic'
                     index = length(F_values_Poisson); % Last index
-                case '8 Hz Periodic'
-                    index = find(F_values_periodic == 8, 1);
+                case '7 Hz Periodic'
+                    index = find(F_values_periodic == 7, 1);
                 case '10 Hz Periodic'
                     index = find(F_values_periodic == 10, 1);
-                case '14 Hz Periodic'
-                    index = find(F_values_periodic == 14, 1);
+                case '15 Hz Periodic'
+                    index = find(F_values_periodic == 15, 1);
                 case 'IAF Hz Aperiodic'
                     index = find(abs(EF_values_Poisson - IAF) < tolerance, 1);
                 case 'IAF Hz Periodic'
@@ -336,7 +343,7 @@ function success = runStrobeSequence(condition, F, EF, osig, T, fs, ondur, dfac,
             % Generate periodic signal
             signal = gen_strobe_periodic(F, T, ondur);
             [samples, ts] = sample_strobe(signal, fs, T);
-        end
+        end   
 
         % Calculate power spectrum
         [spower, f] = pspectrum(samples, fs, 'FrequencyLimits', [0, dfac*F]);
@@ -346,7 +353,7 @@ function success = runStrobeSequence(condition, F, EF, osig, T, fs, ondur, dfac,
         save('strobe_sequence.mat', 'preparedStrobeData1D');
 
         % File name for the strobe sequence to be written to the device
-        filename = "Example.txt";
+        filename = "exp.txt";
 
         pause(1);
 
@@ -395,7 +402,7 @@ function success = runStrobeSequence(condition, F, EF, osig, T, fs, ondur, dfac,
         disp("Done.");
         pause(1);
 
-        audioFilePath = ("F:\final_experiment\copper_bell_A.mp3");
+        audioFilePath = ("D:\new_interface\Experimental_Script\copper_bell_A.mp3");
         [y, Fs] = audioread(audioFilePath);
 
         % Play readiness tone
@@ -448,19 +455,19 @@ end
 
 function triggerValue = getStartTriggerValue(condition)
     switch condition
-        case '8 Hz Periodic'
+        case '7 Hz Periodic'
             triggerValue = 1;
         case '10 Hz Periodic'
             triggerValue = 2;
-        case '14 Hz Periodic'
+        case '15 Hz Periodic'
             triggerValue = 3;
         case 'IAF Hz Periodic'
             triggerValue = 4;
-        case '8 Hz Aperiodic'
+        case '7 Hz Aperiodic'
             triggerValue = 5;
         case '10 Hz Aperiodic'
             triggerValue = 6;
-        case '14 Hz Aperiodic'
+        case '15 Hz Aperiodic'
             triggerValue = 7;
         case 'IAF Hz Aperiodic'
             triggerValue = 8;

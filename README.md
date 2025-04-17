@@ -21,5 +21,5 @@ between participant Oz channel power and an external photodiode to record strobe
 
 A big thank you to Dr. David Schwartzman, Dr. Lionel Barnett, and Dr. Anil Seth for their guidance through this project as I make headway into the wonderful world of neural engineering. 
 
-for the MSc in Cognitive Neuroscience at the University of Sussex, 2023-2024 
+for the University of Sussex, 2023-2024 
 "Investigating the Effects of Neural Entrainment on Stroboscopic Visual Hallucinations"
